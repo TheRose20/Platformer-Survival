@@ -11,7 +11,6 @@ public class GetPlayer : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Awake GetPlayer");
         if (instance == null)
         {
             instance = this;

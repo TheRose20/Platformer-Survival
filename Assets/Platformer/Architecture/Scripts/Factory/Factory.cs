@@ -10,7 +10,7 @@ public interface IProduct
 
 public interface ILineProduct
 {
-    public void Initialize(LineLaserSO lineStats, LineRenderer lineComponent);
+    public void Initialize(LineLaserSO lineStats);
 }
 
 public abstract class Factory : MonoBehaviour
@@ -20,5 +20,5 @@ public abstract class Factory : MonoBehaviour
 
 public interface ILineFactory
 {
-    public abstract ILineProduct GetProduct(Vector3 origin, Vector3 hitPosition, LineLaserSO lineStats);
+    public abstract void GetProduct(Vector3 origin, Vector3 hitPosition, LineLaserSO lineStats);
 }

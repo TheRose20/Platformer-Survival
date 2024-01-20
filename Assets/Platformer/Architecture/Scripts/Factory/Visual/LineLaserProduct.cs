@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(LineRenderer))]
 public class LineLaserProduct : MonoBehaviour, ILineProduct
 {
-    public void Initialize(LineLaserSO lineStats, LineRenderer lineComponent)
+    private LineRenderer _lineRenderer;
+    public void Initialize(LineLaserSO lineStats)
     {
-        lineComponent.startWidth = lineStats.StartWidth;
-        lineComponent.endWidth = lineStats.EndWidth;
-        lineComponent.startColor = lineStats.StartColor;
-        lineComponent.endColor = lineStats.EndColor;
-        lineComponent.material = lineStats.Material;
+        _lineRenderer.startWidth = lineStats.StartWidth;
+        _lineRenderer.endWidth = lineStats.EndWidth;
+        _lineRenderer.startColor = lineStats.StartColor;
+        _lineRenderer.endColor = lineStats.EndColor;
+        _lineRenderer.material = lineStats.Material;
+    }
+
+    public LineRenderer GetLineRenderer() => _lineRenderer;
+    private void OnEnable()
+    {
+        _lineRenderer = GetComponent<LineRenderer>();
     }
 }
