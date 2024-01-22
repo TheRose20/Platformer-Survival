@@ -1,14 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class DroneGun : MonoBehaviour
 {
-    [Header("Shoot Position")] 
+    #region CONSTANTA
+    [Header("Shoot Position")]
     [SerializeField] protected Transform _shootPosition;
+
+    [Header("Shoot modify")]
+    public UnityEvent ShootEvent;
 
 
     protected DroneGunSO _droneGunStats;
-    public DroneGunSO DroneGunStats => _droneGunStats;
+    public DroneGunSO DroneGunStats => _droneGunStats; 
+    #endregion
 
     protected virtual void OnEnable()
     {
@@ -22,7 +28,7 @@ public abstract class DroneGun : MonoBehaviour
     protected abstract void OnValidate();
   
 
-    protected IEnumerator Shoting() //static?
+    protected IEnumerator Shoting()
     {
         while(gameObject.activeSelf)
         {

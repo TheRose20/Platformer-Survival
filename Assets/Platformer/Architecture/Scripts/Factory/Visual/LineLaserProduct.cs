@@ -27,12 +27,14 @@ public class LineLaserProduct : MonoBehaviour, ILineProduct
 
     private IEnumerator Fade(float fadeTime, LineLaserSO lineColor)
     {
-        float alpha = 255;
-        while (alpha > 0)
+        float elapsedTime = 0f;
+        Color initialColor = lineColor.Material.color;
+
+        while (elapsedTime < fadeTime)
         {
-            float alphaBlend = 255 * Time.deltaTime * fadeTime;
-            alpha -= alphaBlend;
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeTime); // Переход от 1 до 0 за fadeTime секунд
             ChangeColor(alpha, lineColor);
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
     }
@@ -40,7 +42,9 @@ public class LineLaserProduct : MonoBehaviour, ILineProduct
 
     private void ChangeColor(float alpha, LineLaserSO lineColor)
     {
-        Color c = 
+        Color newColor = lineColor.Material.color;
+        newColor.a = alpha;
+        _lineRenderer.material.color = newColor;
     }
 
     public LineRenderer GetLineRenderer() => _lineRenderer;

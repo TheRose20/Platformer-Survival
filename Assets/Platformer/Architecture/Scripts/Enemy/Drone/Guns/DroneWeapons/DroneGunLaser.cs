@@ -35,7 +35,8 @@ public class DroneGunLaser : DroneGun
     {
         RaycastHit2D hit = Physics2D.Raycast(_shootPosition.position, -_shootPosition.up, 50);
 
-        if (!hit) return;;
+        if (!hit) return;
+        ShootEvent?.Invoke();
         VisualLaser(_shootPosition.position, hit.point, _lineStats);
 
         if (hit.collider.TryGetComponent<PlayerController>(out PlayerController player))

@@ -20,6 +20,12 @@ public class Drone : Enemy
     #endregion
 
 
+    public void Initialize(DroneSO droneStats)
+    {
+
+    }
+
+    #region MOVE
     private void FixedUpdate()
     {
         if (_takeOff)
@@ -52,7 +58,7 @@ public class Drone : Enemy
 
             MoveTowardsRigidbody(_rigidbody, desiredVelocity.x, desiredVelocity.y, _droneStats.Acceleration);
         }
-        else if(distanceTarget < _droneStats.MinDistance)
+        else if (distanceTarget < _droneStats.MinDistance)
         {
             Vector2 desiredVelocity = directionOutTarget * _droneStats.Speed;
 
@@ -65,7 +71,7 @@ public class Drone : Enemy
 
     }
 
-    private void MoveTowardsRigidbody(Rigidbody2D rigidbodyVelocity,float velocityX, float velocityY, float delta)
+    private void MoveTowardsRigidbody(Rigidbody2D rigidbodyVelocity, float velocityX, float velocityY, float delta)
     {
         float newVelocityX = Mathf.MoveTowards(rigidbodyVelocity.velocity.x, velocityX, delta * Time.fixedDeltaTime);
         float newVelocityY = Mathf.MoveTowards(rigidbodyVelocity.velocity.y, velocityY, delta * Time.fixedDeltaTime);
@@ -74,36 +80,22 @@ public class Drone : Enemy
         _rigidbody.velocity = new Vector2(newVelocityX, newVelocityY);
     }
 
+    #endregion
+
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, _droneStats.MinDistance);    
+        Gizmos.DrawWireSphere(transform.position, _droneStats.MinDistance);
         Gizmos.DrawWireSphere(transform.position, _droneStats.MinDistance + _droneStats.DistanceDeathZone);
     }
-
-    protected override void Initialization(EnemySO enemy)
-    {
+#endif
 
 
-        base.Initialization(enemy);
-    }
 
-    protected override void OnValidate()
-    {
-        if (_rigidbody == null)
-        {
-            _rigidbody = GetComponent<Rigidbody2D>();
-        }
-        if(_enemyStats == null)
-        {
-            _enemyStats = _droneStats;
-        }
-
-        base.OnValidate();
-    }
-
+    #region BLACKOUT \ DEATH
     public void Blackout()
     {
-        if(gameObject.activeSelf)
+        if (gameObject.activeSelf)
         {
             StartCoroutine(BlackoutCoroutine(_droneStats.BlackoutTime));
         }
@@ -122,7 +114,7 @@ public class Drone : Enemy
 
     private void OnEnable()
     {
-        if(_target == null) _target = GetPlayer.instance.GetPlayerTransform();
+        if (_target == null) _target = GetPlayer.instance.GetPlayerTransform();
         _health.OnDeath += Death;
     }
 
@@ -130,12 +122,28 @@ public class Drone : Enemy
     {
         _health.OnDeath -= Death;
         StopAllCoroutines();
-        Debug.Log("Drone Death, OnDisable");
     }
 
     private void Death()
     {
         StopAllCoroutines();
-        Debug.Log("Drone Death, Death");
-    }
+    } 
+    #endregion
+
+#if UNITY_EDITOR
+
+    protected override void OnValidate()
+    {
+        if (_rigidbody == null)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
+        if (_enemyStats == null)
+        {
+            _enemyStats = _droneStats;
+        }
+
+        base.OnValidate();
+    } 
+#endif
 }
