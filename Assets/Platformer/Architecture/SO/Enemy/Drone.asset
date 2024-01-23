@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae918c7eaa9ab45489894aa94b7f88eb, type: 3}
+  m_Name: Drone
+  m_EditorClassIdentifier: 
+  _maxHealth: 20
+  _speed: 5
+  _acceleration: 100
+  _deceleration: 20
+  _blackoutTime: 2
+  _minDistance: 5
+  _distanceDeathZone: 0.5
+  _eyes: {fileID: -1569814756, guid: c4207fe8d9334fb49ac0d02317c9a236, type: 3}
+  _eyesColor: {r: 0.22574759, g: 0.8396226, b: 0.8265243, a: 1}
