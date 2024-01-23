@@ -22,9 +22,10 @@ public class BulletExplosion : MonoBehaviour
 
     private void Explosion(Collision2D collision)
     {
-        int layerMask = ExcludeLayer("Default");
+        int layerMask = ExcludeLayer("Bullet");
 
-        if (collision.collider.TryGetComponent<Health>(out Health mainEnemyHealth))
+        collision.collider.TryGetComponent<Health>(out Health mainEnemyHealth);
+        if (mainEnemyHealth)
         {
             int damage = _bullet.BulletStats.Damage;
             mainEnemyHealth.ApplyDamage(damage);
@@ -45,15 +46,13 @@ public class BulletExplosion : MonoBehaviour
             }
         }
 
-        OnExplosion.Invoke();
+        OnExplosion?.Invoke();
         ParticleSystem particle = Instantiate(_particleSystem, transform.position, Quaternion.identity);
         particle.Play();
         gameObject.SetActive(false);
 
-        if(collision.collider.TryGetComponent<Drone>(out Drone drone))
-        {
-            drone.Blackout();
-        }
+        collision.collider.TryGetComponent<Drone>(out Drone drone);
+        drone?.Blackout();
 
     }
 
@@ -64,7 +63,8 @@ public class BulletExplosion : MonoBehaviour
 
         if (!hit) return;
 
-        else if (hit.collider.TryGetComponent<Health>(out Health h) == currentEnemyHealth)
+        Health hitHealthComponent;
+        if (hit.collider.TryGetComponent(out hitHealthComponent) && hitHealthComponent == currentEnemyHealth)
         {
             int bulletDamage = _bullet.BulletStats.Damage;
             float bulletExplosionForce = _bullet.BulletStats.ExplosionForce;
@@ -97,8 +97,7 @@ public class BulletExplosion : MonoBehaviour
 
     private static int ExcludeLayer(string name)
     {
-        int layerToIgnore = LayerMask.NameToLayer(name);
-        int layerMask = ~(1 << layerToIgnore);
+        int layerMask = ~(1 << LayerMask.NameToLayer(name));
         return layerMask;
     }
 

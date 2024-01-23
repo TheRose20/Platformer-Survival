@@ -14,7 +14,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        
+        DroneFactory.instance.BuildDrone(_waves[0].Enemies[0], Vector3.zero);
     }
 
     private void StartWave(Wave currentWave, Transform[] positions)
@@ -48,6 +48,9 @@ public class WaveManager : MonoBehaviour
 [Serializable]
 public class Wave
 {
-    [SerializeField] private Enemy[] _enemes;
-    [SerializeField] private int _enemyCount;
+    [SerializeField] private DroneData[] _enemes;
+    [SerializeField] private int _enemyCount = 3;
+
+    public DroneData[] Enemies => _enemes;
+    public int EnemyCount => _enemyCount;
 }

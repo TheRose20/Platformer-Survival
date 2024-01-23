@@ -15,23 +15,39 @@ public class Drone : Enemy
     public Action OnTakeOff;
 
     private bool _takeOff = true;
-    private Transform _target;
-    private Rigidbody2D _rigidbody;
+    [SerializeField] private Transform _target;
+    [SerializeField] private Rigidbody2D _rigidbody;
     #endregion
 
 
     public void Initialize(DroneSO droneStats)
     {
-
+        _droneStats = droneStats;
+        HealthInitialize(_droneStats);
+        StartCoroutine(WaitForGetPlayerInstance());
     }
 
+    private IEnumerator WaitForGetPlayerInstance()
+    {
+        while (GetPlayer.instance == null)
+        {
+            yield return null;
+        }
+        _target = GetPlayer.instance.GetPlayerTransform();
+    }
     #region MOVE
     private void FixedUpdate()
     {
         if (_takeOff)
         {
-            Move(_target);
-            //Rotate();
+            if (_target != null)
+            {
+                Move(_target);
+            }
+            else
+            {
+                Debug.Log("Target null");
+            }
         }
     }
     /*
@@ -62,7 +78,7 @@ public class Drone : Enemy
         {
             Vector2 desiredVelocity = directionOutTarget * _droneStats.Speed;
 
-            MoveTowardsRigidbody(_rigidbody, desiredVelocity.x, desiredVelocity.y, _enemyStats.Deceleration);
+            MoveTowardsRigidbody(_rigidbody, desiredVelocity.x, desiredVelocity.y, _droneStats.Deceleration);
         }
         else
         {
@@ -98,6 +114,13 @@ public class Drone : Enemy
         if (gameObject.activeSelf)
         {
             StartCoroutine(BlackoutCoroutine(_droneStats.BlackoutTime));
+        }
+    }
+    public void Blackout(float time)
+    {
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(BlackoutCoroutine(time));
         }
     }
 

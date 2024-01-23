@@ -4,8 +4,9 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    #region CONSTANTA
     [SerializeField] private UnityEvent<int, int> HealthChange;
-    [SerializeField] private UnityEvent<int, int> MaxHealthChange; 
+    [SerializeField] private UnityEvent<int, int> MaxHealthChange;
     [SerializeField] private UnityEvent DeathEvent;
 
     public Action<int> OnHealthChange;
@@ -18,7 +19,8 @@ public class Health : MonoBehaviour
 
     public Action OnDeath;
 
-    public int GetHealth => _health;
+    public int GetHealth => _health; 
+    #endregion
     public void ApplyDamage(int damage)
     {
 #if UNITY_EDITOR

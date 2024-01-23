@@ -8,15 +8,15 @@ public class AimGunToPlayer : MonoBehaviour
     [SerializeField] private Transform _target;
     private DroneGunSO _droneGunStats;
 
-    private void OnEnable()
+    public void Initialize()
     {
         StartCoroutine(WaitForGetPlayerInstance());
-        Initialization();
+        _droneGunStats = GetComponent<DroneGun>().DroneGunStats;
     }
 
-    private void Initialization()
+    private void OnDisable()
     {
-        _droneGunStats = GetComponent<DroneGun>().DroneGunStats;
+        StopAllCoroutines();
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class AimGunToPlayer : MonoBehaviour
         _droneGunStats = GetComponent<DroneGun>().DroneGunStats; // Change to initialization
     }
 
-    private  IEnumerator WaitForGetPlayerInstance()
+    private IEnumerator WaitForGetPlayerInstance()
     {
         while (GetPlayer.instance == null)
         {

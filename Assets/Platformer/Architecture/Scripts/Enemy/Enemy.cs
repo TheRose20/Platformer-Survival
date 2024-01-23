@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected void HealthInitialize(EnemySO enemyStats)
     {
-        _health.SetMaxHealth(enemyStats.Health);
+        _health.SetMaxHealth(enemyStats.MaxHealth);
         _health.MaxHealthHeal();
     }
 

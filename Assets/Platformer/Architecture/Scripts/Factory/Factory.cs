@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -15,7 +13,7 @@ public interface ILineProduct
 
 public abstract class Factory : MonoBehaviour
 {
-    public abstract ILineProduct GetProduct(Vector3 position);
+    public abstract IProduct GetProduct(Vector3 position);
 }
 
 public interface ILineFactory

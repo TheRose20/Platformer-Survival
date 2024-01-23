@@ -16,17 +16,13 @@ public abstract class DroneGun : MonoBehaviour
     public DroneGunSO DroneGunStats => _droneGunStats; 
     #endregion
 
-    protected virtual void OnEnable()
-    {
-        StartCoroutine(Shoting());
-    }
     protected virtual void OnDisable()
     {
         StopAllCoroutines();
     }
 
     protected abstract void OnValidate();
-  
+
 
     protected IEnumerator Shoting()
     {

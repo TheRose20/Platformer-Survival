@@ -51,13 +51,19 @@ public class DroneGunLaser : DroneGun
     }
 
 #if UNITY_EDITOR
-    protected override void OnEnable()
+    private void OnEnable()
     {
         if (!_lineStats)
         {
             Debug.LogWarning("Line stats is empty", this);
         }
-        base.OnEnable();
+    }
+
+    public void Initialize(DroneGunSO gunStats)
+    {
+        _currentDroneGunStats = gunStats;
+        _droneGunStats = _currentDroneGunStats;
+        StartCoroutine(Shoting());
     }
 #endif
 }

@@ -13,7 +13,7 @@ public class EnemySO : ScriptableObject
     [SerializeField, Min(1)] private float _acceleration = 100;
     [SerializeField, Min(1)] private float _deceleration = 20;
 
-    public int Health => _maxHealth;
+    public int MaxHealth => _maxHealth;
     public float Speed => _speed;
     public float Acceleration => _acceleration;
     public float Deceleration => _deceleration;
