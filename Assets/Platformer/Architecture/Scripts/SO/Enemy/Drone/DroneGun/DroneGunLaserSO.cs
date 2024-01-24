@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DroneGunLaser", menuName = "Drone/Create new Drone Laser stats", order = 51)]

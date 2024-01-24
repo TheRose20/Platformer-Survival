@@ -16,16 +16,19 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        if(_oneTime) StartCoroutine(WaitToNextWave(_nextWaveTime));
+        if (_oneTime) StartCoroutine(WaitToNextWave(_nextWaveTime));
     }
 
     private void StartWave(Wave currentWave, Transform[] positions)
     {
         for (int i = 0; i < currentWave.EnemyCount; i++)
         {
-            DroneFactory.instance.BuildDrone(currentWave.Enemies[i], _spawnPositions[i].position);
+            int randomValue = GetRandom(0, _spawnPositions.Length);
+            DroneFactory.instance.BuildDrone(currentWave.Enemies[i], _spawnPositions[randomValue].position);
         }
     }
+
+    private int GetRandom(int value1, int value2) => UnityEngine.Random.Range(value1, value2);
 
     private IEnumerator WaitToNextWave(float timeToNextWave)
     {
@@ -35,13 +38,13 @@ public class WaveManager : MonoBehaviour
 
     private void OnValidate()
     {
-        if(gameObject.name != "WaveManager") gameObject.name = "WaveManager";
+        if (gameObject.name != "WaveManager") gameObject.name = "WaveManager";
 
         Transform[] childrens = GetComponentsInChildren<Transform>();
         List<Transform> clearChildens = new List<Transform>(childrens.Length - 1);
-        foreach(Transform currnetChildren in childrens)
+        foreach (Transform currnetChildren in childrens)
         {
-            if(currnetChildren != transform)
+            if (currnetChildren != transform)
             {
                 clearChildens.Add(currnetChildren);
             }

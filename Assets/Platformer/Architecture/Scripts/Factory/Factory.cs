@@ -3,12 +3,22 @@ using UnityEngine;
 
 public interface IProduct
 {
+    public abstract void Initialize();
+}
+
+public interface IParticleProduct
+{
     public void Initialize();
+}
+
+public interface IParticleFactory
+{
+    public abstract void GetProduct(Vector3 position);
 }
 
 public interface ILineProduct
 {
-    public void Initialize(LineLaserSO lineStats);
+    public abstract void Initialize(LineLaserSO lineStats);
 }
 
 public abstract class Factory : MonoBehaviour

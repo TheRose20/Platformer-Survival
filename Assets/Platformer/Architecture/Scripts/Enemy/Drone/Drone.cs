@@ -17,12 +17,19 @@ public class Drone : Enemy
     private bool _takeOff = true;
     [SerializeField] private Transform _target;
     [SerializeField] private Rigidbody2D _rigidbody;
+
+    [Header("Visual")]
+    [SerializeField] private SpriteRenderer _eyesSpriteRenderer;
     #endregion
 
 
     public void Initialize(DroneSO droneStats)
     {
         _droneStats = droneStats;
+
+        _eyesSpriteRenderer.sprite = droneStats.Eyes;
+        _eyesSpriteRenderer.color = droneStats.EyesColor;
+
         HealthInitialize(_droneStats);
         StartCoroutine(WaitForGetPlayerInstance());
     }
@@ -150,6 +157,8 @@ public class Drone : Enemy
     private void Death()
     {
         StopAllCoroutines();
+        gameObject.SetActive(false);
+
     } 
     #endregion
 
@@ -164,6 +173,18 @@ public class Drone : Enemy
         if (_enemyStats == null)
         {
             _enemyStats = _droneStats;
+        }
+        if(_eyesSpriteRenderer == null)
+        {
+            SpriteRenderer[] allSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer spriteRenderer in allSpriteRenderer)
+            {
+                if(spriteRenderer.name == "Eyes")
+                {
+                    _eyesSpriteRenderer = spriteRenderer;
+                    break;
+                }
+            }
         }
 
         base.OnValidate();

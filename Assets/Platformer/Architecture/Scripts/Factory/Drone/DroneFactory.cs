@@ -35,12 +35,12 @@ public class DroneFactory : MonoBehaviour
     {
         Drone curretnDrone = Instantiate(_dronePrefab, buildPosition, Quaternion.identity);
         curretnDrone.Initialize(droneData.DroneStats);
+        curretnDrone.name = droneData.DroneStats.name;
 
         BuildWeapon(droneData, buildPosition, curretnDrone);
 
         return curretnDrone;
     }
-
     private void BuildWeapon(DroneData droneData, Vector3 buildPosition, Drone curretnDrone)
     {
         for (int i = 0; i < droneData.GunsStats.Length; i++)
@@ -82,8 +82,8 @@ public class DroneFactory : MonoBehaviour
         float distandeBetweenPoints = (pointsCount > 1) ? _droneXSize / (pointsCount - 1) : _droneXSize / 2;
 
         float shift = _weaponOffset.x - _droneXSize / 2; //  -1____0____1 => 0____1____2
-        float xPosition = i * distandeBetweenPoints + shift;
-        currentWeaponPosition.transform.position = new Vector3(xPosition, _weaponOffset.y);
+        float xPosition = (pointsCount > 1) ? i * distandeBetweenPoints + shift : i * distandeBetweenPoints;
+        currentWeaponPosition.transform.position = new Vector3(xPosition + buildPosition.x, _weaponOffset.y + buildPosition.y);
     } 
     #endregion
 
