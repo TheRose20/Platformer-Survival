@@ -58,12 +58,12 @@ public class DroneFactory : MonoBehaviour
 
                 currentWeaponPosition = currentWeapon.transform;
             }
-            else if (droneData.GunsStats[i] is DroneGunSO)
+            else if (droneData.GunsStats[i] is DroneGunLaserSO)
             {
                 DroneGunLaser currentWeapon = Instantiate
                     (_gunLaserPrefab, buildPosition + _weaponOffset, Quaternion.identity, curretnDrone.transform)
                     as DroneGunLaser;
-                currentWeapon.Initialize(droneData.GunsStats[i] as DroneGunSO);
+                currentWeapon.Initialize(droneData.GunsStats[i] as DroneGunLaserSO);
 
                 currentWeapon.TryGetComponent<AimGunToPlayer>(out AimGunToPlayer aim);
                 aim?.Initialize();

@@ -12,20 +12,25 @@ public class WaveManager : MonoBehaviour
     [SerializeField, Range(0, 20)] private float _nextWaveTime = 3f;
     [SerializeField] private Wave[] _waves = new Wave[3];
 
+    private int _currentWave = 0;
+
     private void Start()
     {
-        DroneFactory.instance.BuildDrone(_waves[0].Enemies[0], Vector3.zero);
+        if(_oneTime) StartCoroutine(WaitToNextWave(_nextWaveTime));
     }
 
     private void StartWave(Wave currentWave, Transform[] positions)
     {
-
+        for (int i = 0; i < currentWave.EnemyCount; i++)
+        {
+            DroneFactory.instance.BuildDrone(currentWave.Enemies[i], _spawnPositions[i].position);
+        }
     }
 
     private IEnumerator WaitToNextWave(float timeToNextWave)
     {
         yield return new WaitForSeconds(timeToNextWave);
-
+        StartWave(_waves[_currentWave], _spawnPositions);
     }
 
     private void OnValidate()

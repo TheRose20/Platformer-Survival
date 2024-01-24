@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DroneGun", menuName = "Drone/Create new DroneGun", order = 51)]
-public class DroneGunSO : ScriptableObject
+
+public abstract class DroneGunSO : ScriptableObject
 {
     [Header("Main Settings")]
     [SerializeField, Min(1)] private int _damage = 1;
