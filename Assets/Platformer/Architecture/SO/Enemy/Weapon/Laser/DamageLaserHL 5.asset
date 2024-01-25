@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f51192d403535004cabbe900cba4c91d, type: 3}
-  m_Name: DroneGunBullet
+  m_Script: {fileID: 11500000, guid: f935652753b1a62499e48bc00fe87fb7, type: 3}
+  m_Name: DamageLaserHL 5
   m_EditorClassIdentifier: 
-  _damage: 2
-  _cooldown: 3
-  _rotateSpeed: 50
-  _bulletPrefab: {fileID: 2772651319207143609, guid: d6d6470dd8d03b145a3f3401d0ab4114, type: 3}
-  _bulletSpeed: 10
+  _damage: 10
+  _cooldown: 5
+  _rotateSpeed: 100
+  _lineStats: {fileID: 11400000, guid: ab6e30ed261312b41a3b9ba15618bea3, type: 2}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9297eabff325104cb916f1e8aba9855, type: 3}
+  m_Name: BroadLaserBlue
+  m_EditorClassIdentifier: 
+  _startWidth: 0.3
+  _endWidth: 0.5
+  _material: {fileID: 2100000, guid: 63711501b3c21d143b904c5815f39e75, type: 2}
+  _startColor: {r: 0.28235298, g: 0.84809655, b: 0.98039216, a: 1}
+  _endColor: {r: 0.23137255, g: 0.5920097, b: 0.67058825, a: 1}
+  _deathTime: 4
+  _useFade: 1
+  _fadeTime: 1

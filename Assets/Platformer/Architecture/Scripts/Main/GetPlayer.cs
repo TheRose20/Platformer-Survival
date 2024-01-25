@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TarodevController;
 using UnityEngine;
 
 public class GetPlayer : MonoBehaviour
 {
-    [SerializeField]private Transform _mainPlayer;
+    [SerializeField] private Transform _mainPlayer;
 
     public static GetPlayer instance { get; private set; }
 

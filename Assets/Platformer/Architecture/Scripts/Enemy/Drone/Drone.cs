@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(DroneDeath))]
 public class Drone : Enemy
 {
     #region CONSTANTA
@@ -159,7 +158,7 @@ public class Drone : Enemy
         StopAllCoroutines();
         gameObject.SetActive(false);
 
-    } 
+    }
     #endregion
 
 #if UNITY_EDITOR
@@ -174,12 +173,12 @@ public class Drone : Enemy
         {
             _enemyStats = _droneStats;
         }
-        if(_eyesSpriteRenderer == null)
+        if (_eyesSpriteRenderer == null)
         {
             SpriteRenderer[] allSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer spriteRenderer in allSpriteRenderer)
             {
-                if(spriteRenderer.name == "Eyes")
+                if (spriteRenderer.name == "Eyes")
                 {
                     _eyesSpriteRenderer = spriteRenderer;
                     break;
@@ -188,6 +187,6 @@ public class Drone : Enemy
         }
 
         base.OnValidate();
-    } 
+    }
 #endif
 }

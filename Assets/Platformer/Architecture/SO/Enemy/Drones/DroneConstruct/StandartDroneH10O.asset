@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae918c7eaa9ab45489894aa94b7f88eb, type: 3}
-  m_Name: Drone
+  m_Name: StandartDroneH10O
   m_EditorClassIdentifier: 
-  _maxHealth: 20
+  _maxHealth: 10
   _speed: 5
   _acceleration: 100
   _deceleration: 20
   _blackoutTime: 2
   _minDistance: 5
-  _distanceDeathZone: 0.5
+  _distanceDeathZone: 3
   _eyes: {fileID: -1569814756, guid: c4207fe8d9334fb49ac0d02317c9a236, type: 3}
-  _eyesColor: {r: 0.22574759, g: 0.8396226, b: 0.8265243, a: 1}
+  _eyesColor: {r: 0.8784314, g: 0.5458488, b: 0.29411763, a: 1}

@@ -8,7 +8,7 @@ public class SimpleShoot2 : MonoBehaviour
     [SerializeField] private KeyCode _shootKeyCode = KeyCode.Mouse0;
     [SerializeField] private Gun _gun;
 
-    public Vector3 MousePosition;
+    private Vector3 MousePosition;
 
     private void Update()
     {

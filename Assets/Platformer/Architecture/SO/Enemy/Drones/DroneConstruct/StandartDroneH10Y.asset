@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae918c7eaa9ab45489894aa94b7f88eb, type: 3}
-  m_Name: SimpleDrone
+  m_Name: StandartDroneH10Y
   m_EditorClassIdentifier: 
   _maxHealth: 10
   _speed: 5
@@ -18,6 +18,6 @@ MonoBehaviour:
   _deceleration: 20
   _blackoutTime: 2
   _minDistance: 5
-  _distanceDeathZone: 0.5
-  _eyes: {fileID: -997969395, guid: c4207fe8d9334fb49ac0d02317c9a236, type: 3}
-  _eyesColor: {r: 0.8207547, g: 0.33681917, b: 0.74874884, a: 1}
+  _distanceDeathZone: 3
+  _eyes: {fileID: -1569814756, guid: c4207fe8d9334fb49ac0d02317c9a236, type: 3}
+  _eyesColor: {r: 0.85316163, g: 0.8773585, b: 0.29383236, a: 1}
