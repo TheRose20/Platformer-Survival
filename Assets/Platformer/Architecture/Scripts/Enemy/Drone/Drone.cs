@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(DroneDeath))]
 public class Drone : Enemy
 {
     #region CONSTANTA
@@ -17,12 +16,19 @@ public class Drone : Enemy
     private bool _takeOff = true;
     [SerializeField] private Transform _target;
     [SerializeField] private Rigidbody2D _rigidbody;
+
+    [Header("Visual")]
+    [SerializeField] private SpriteRenderer _eyesSpriteRenderer;
     #endregion
 
 
     public void Initialize(DroneSO droneStats)
     {
         _droneStats = droneStats;
+
+        _eyesSpriteRenderer.sprite = droneStats.Eyes;
+        _eyesSpriteRenderer.color = droneStats.EyesColor;
+
         HealthInitialize(_droneStats);
         StartCoroutine(WaitForGetPlayerInstance());
     }
@@ -150,7 +156,9 @@ public class Drone : Enemy
     private void Death()
     {
         StopAllCoroutines();
-    } 
+        gameObject.SetActive(false);
+
+    }
     #endregion
 
 #if UNITY_EDITOR
@@ -165,8 +173,20 @@ public class Drone : Enemy
         {
             _enemyStats = _droneStats;
         }
+        if (_eyesSpriteRenderer == null)
+        {
+            SpriteRenderer[] allSpriteRenderer = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer spriteRenderer in allSpriteRenderer)
+            {
+                if (spriteRenderer.name == "Eyes")
+                {
+                    _eyesSpriteRenderer = spriteRenderer;
+                    break;
+                }
+            }
+        }
 
         base.OnValidate();
-    } 
+    }
 #endif
 }

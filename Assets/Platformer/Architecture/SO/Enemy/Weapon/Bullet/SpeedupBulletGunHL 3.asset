@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6761016757044fe41bf86d8022a609e9, type: 3}
-  m_Name: DroneGun
+  m_Script: {fileID: 11500000, guid: f51192d403535004cabbe900cba4c91d, type: 3}
+  m_Name: SpeedupBulletGunHL 3
   m_EditorClassIdentifier: 
-  _damage: 1
-  _cooldown: 2
-  _rotateSpeed: 10
+  _damage: 2
+  _cooldown: 1
+  _rotateSpeed: 1000
+  _bulletPrefab: {fileID: 2772651319207143609, guid: d6d6470dd8d03b145a3f3401d0ab4114, type: 3}
+  _bulletSpeed: 30

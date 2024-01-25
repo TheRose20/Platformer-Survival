@@ -1,17 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Gun: MonoBehaviour
 {
     #region CONSTANTA
-    [SerializeField] protected Transform _spawnBulletPoint;
-    [SerializeField] protected int _bulletsCount = 10;
-    [SerializeField] protected float _cooldown = 0.1f;
-    [SerializeField, Min(1)] protected int _damage = 2;
+    [SerializeField] protected Transform SpawnBulletPosition;
+    [SerializeField] protected int BulletCount = 10;
+    [SerializeField] protected float Cooldown = 0.1f;
+    [SerializeField, Min(1)] protected int Damage = 2;
 
     [SerializeField] protected GunType _gunType; 
 
@@ -24,7 +22,7 @@ public class Gun: MonoBehaviour
 
     public void TryShoot()
     {
-        if(_bulletsCount <= 0)
+        if(BulletCount <= 0)
         {
             NoBullets?.Invoke();
             return;
@@ -37,9 +35,9 @@ public class Gun: MonoBehaviour
     {
         _reload = true;
         StartCoroutine(Reload());
-        _bulletsCount--;
+        BulletCount--;
         OnShoot?.Invoke();
-        ChangeBullets?.Invoke(_bulletsCount);
+        ChangeBullets?.Invoke(BulletCount);
     }
 
     public virtual void TryAddBullets(GunType type, int countBullets)
@@ -52,20 +50,20 @@ public class Gun: MonoBehaviour
 
         if(type == _gunType)
         {
-            _bulletsCount += countBullets;
-            ChangeBullets?.Invoke(_bulletsCount);
+            BulletCount += countBullets;
+            ChangeBullets?.Invoke(BulletCount);
         }
     }
 
     protected IEnumerator Reload()
     {
-        yield return new WaitForSeconds(_cooldown);
+        yield return new WaitForSeconds(Cooldown);
         _reload = false;
     }
 
     protected virtual void Initialization()
     {
-        ChangeBullets?.Invoke(_bulletsCount);
+        ChangeBullets?.Invoke(BulletCount);
     }
 
 #if UNITY_EDITOR

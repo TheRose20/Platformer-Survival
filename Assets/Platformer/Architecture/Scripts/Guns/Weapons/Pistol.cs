@@ -49,9 +49,9 @@ public class Pistol : Gun
 
     protected override void Initialization()
     {
-        _cooldown = _pistolStats.Coooldowm;
-        _bulletsCount = _pistolStats.StartAmmoAmount;
-        _damage = _pistolStats.Damage;
+        Cooldown = _pistolStats.Coooldowm;
+        BulletCount = _pistolStats.StartAmmoAmount;
+        Damage = _pistolStats.Damage;
         base.Initialization();
     }
 }

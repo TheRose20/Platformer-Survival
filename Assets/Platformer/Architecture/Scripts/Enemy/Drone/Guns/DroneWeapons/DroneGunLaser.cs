@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using TarodevController;
 using UnityEngine;
 
@@ -59,10 +56,14 @@ public class DroneGunLaser : DroneGun
         }
     }
 
-    public void Initialize(DroneGunSO gunStats)
+    public void Initialize(DroneGunLaserSO gunStats)
     {
         _currentDroneGunStats = gunStats;
         _droneGunStats = _currentDroneGunStats;
+        if(gunStats.LineStats != null)
+        {
+            _lineStats = gunStats.LineStats;
+        }
         StartCoroutine(Shoting());
     }
 #endif

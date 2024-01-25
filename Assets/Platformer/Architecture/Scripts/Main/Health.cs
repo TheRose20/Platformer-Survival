@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,7 +19,7 @@ public class Health : MonoBehaviour
 
     public Action OnDeath;
 
-    public int GetHealth => _health; 
+    public int GetHealth => _health;
     #endregion
     public void ApplyDamage(int damage)
     {
@@ -33,7 +33,7 @@ public class Health : MonoBehaviour
         {
             ChangeHealth(-damage);
             return;
-        } 
+        }
 #endif
         ChangeHealth(-damage);
     }
@@ -50,7 +50,7 @@ public class Health : MonoBehaviour
         {
             ChangeHealth(heal);
             return;
-        } 
+        }
 #endif
         ChangeHealth(heal);
     }
@@ -72,7 +72,7 @@ public class Health : MonoBehaviour
         {
             ChangeMaxHealth(newMaxHealth);
             return;
-        } 
+        }
 #endif
         ChangeMaxHealth(newMaxHealth);
     }

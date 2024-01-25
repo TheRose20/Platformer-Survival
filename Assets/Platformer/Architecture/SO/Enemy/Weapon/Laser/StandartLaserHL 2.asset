@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6761016757044fe41bf86d8022a609e9, type: 3}
-  m_Name: DroneGun
+  m_Script: {fileID: 11500000, guid: f935652753b1a62499e48bc00fe87fb7, type: 3}
+  m_Name: StandartLaserHL 2
   m_EditorClassIdentifier: 
-  _damage: 1
+  _damage: 2
   _cooldown: 2
-  _rotateSpeed: 150
+  _rotateSpeed: 100
+  _lineStats: {fileID: 11400000, guid: 3c1d2aca4159af241bc5b1e29ed2fed9, type: 2}

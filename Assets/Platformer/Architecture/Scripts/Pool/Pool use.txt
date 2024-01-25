@@ -1,0 +1,22 @@
+    #region POOL
+    private const int BULLET_PRELOAD_COUNT = 2;
+
+    private void Awake()
+    {
+        _poolTransformParent = new GameObject("POOL").transform;
+        _poolTransformParent.tag = "pool";
+        _bulletPool = new PoolBase<Bullet>(Preload, GetAction, ReturnAction, BULLET_PRELOAD_COUNT);
+
+        _flyDrone = GetComponentInParent<FlyDrone>();
+    }
+
+
+    public Bullet Preload()
+    {
+        Bullet bullet = Instantiate(bulletPrefab).GetComponent<Bullet>();
+        bullet.transform.parent = _poolTransformParent;
+        return bullet;
+    }
+    public void GetAction(Bullet bullet) => bullet.gameObject.SetActive(true);
+    public void ReturnAction(Bullet bullet) => bullet.gameObject.SetActive(false); 
+    #endregion
