@@ -13,9 +13,10 @@
 https://github.com/TheRose20/Platformer-Survival/blob/7af97ad5818c038e16c2d6c43c2df6a539daa712/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Drone.cs#L69-L104
 
 ### Дрон
+
 Дрон, это класс который хранит в себе некий DroneSO[^1].
 
-[^1] : DroneSO расшифровывается как Drone Scriptable Object
+[^1]: DroneSO расшифровывается как Drone Scriptable Object
 
 https://github.com/TheRose20/Platformer-Survival/blob/7af97ad5818c038e16c2d6c43c2df6a539daa712/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Drone.cs#L11
 DroneSO это наследник класса [Scriptable Object](https://docs.unity3d.com/Manual/class-ScriptableObject.html), работающий как флешка. В дрон нужно закинуть *флешку* (DroneSO), чтобы дрон "осознал себя". В этой *флешке* нужные для дрона [параметры](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/SO/Enemy/Drone/DroneSO.cs), такие как:
@@ -23,9 +24,16 @@ DroneSO это наследник класса [Scriptable Object](https://docs.
 - Макскимальная дистанция
 - Глаза
 - Цвет глаз
-- Время отключки <br>
+- Время отключки
+- Скорость
+- Ускорение
+- Замедление <br>
 
-*Флешка* эта нужна для удобства использования, место того, чтобы каждый раз делать из дрона новый префаб с параметрами, мы делаем флешку и передаем дрону во внутрь
+*Флешка* эта нужна для удобства использования, место того, чтобы каждый раз делать из дрона новый префаб с параметрами, мы делаем флешку и передаем дрону во внутрь, он уже сам разбирается, что с ней делать.<br>
+В моем случае он ее использует при инициализации:
+https://github.com/TheRose20/Platformer-Survival/blob/ff14a9b59c27a731f1243ab913079fd018532df7/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Drone.cs#L25-L34
+а так-же дрон использует в своих расчетах, для экономии памяти, да и в целом это правильный подход:
+https://github.com/TheRose20/Platformer-Survival/blob/ff14a9b59c27a731f1243ab913079fd018532df7/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Drone.cs#L77-L92
 
 
 ### Оружие
@@ -33,8 +41,9 @@ DroneSO это наследник класса [Scriptable Object](https://docs.
 - [Наводчик](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/AimGunToPlayer.cs) (Который просто наводится на игрока)
 - [Базовый класс](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/DroneWeapons/DroneGun.cs)
   - [Оружие с пулями](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/DroneWeapons/DroneGunBullet.cs) (Оружие которое стреляет пулями)
-  - [Лазерная пушка](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/DroneWeapons/DroneGunLaser.cs) (Оружие которое стреляет лазером, моментально нанося урон)
-В целом ничего сложножного, всего 2 производных класса с разной реализацией стрельбы. Как и в большинстве настраев 
+  - [Лазерная пушка](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/DroneWeapons/DroneGunLaser.cs) (Оружие которое стреляет лазером, моментально нанося урон)<br>
+  
+В целом ничего сложножного, всего 2 производных класса с разной реализацией стрельбы. 
 
 
 ## Система волн
