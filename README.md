@@ -7,9 +7,9 @@
 Как я уже сказал некоторый аспекты ТЗ реализовывать мне было не очень интересно (Я на них просто забил). Но поработал над другими, которые получились достаточно неплохо! Было проделанно не мало работы над архетиктурой проекта, но даже так я считаю его не идеальным.
 
 ## Система дронов
+Итак, моя задача была - сделать систему с которой можно было гибко работать и отчасти у меня получилось.
 
-
-
+Изначально я сделал [базовый класс врага](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Enemy.cs), который сразу унаследовал в классе [дрона](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Drone.cs)
 
 
 
