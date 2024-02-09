@@ -9,7 +9,7 @@
 ## Система дронов
 Итак, моя задача была - сделать систему с которой можно было гибко работать и отчасти у меня получилось.
 
-Изначально я сделал [базовый класс врага](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Enemy.cs), который сразу унаследовал в классе [дрона](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Drone.cs)
+Изначально я сделал [базовый класс врага](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Enemy.cs), который сразу унаследовал в классе [дрона](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Drone.cs), в начале я хотел, чтобы дроны были умными и умели обходить препятствия, даже отдельную [папку](https://github.com/TheRose20/Platformer-Survival/tree/master/Assets/Platformer/Architecture/Scripts/AI/Drone) для этого создал в которой начал писать код, но позже отказался от этой затеи в связи с большими потерями времени и начал реализовывать простое передвижение дрона, которое хоть и работало достаточно просто, но выглядело вполне массивно
 
 
 
