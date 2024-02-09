@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
 using System.Linq;
+using UnityEngine;
 
 public class RailGun : Gun
 {
@@ -15,11 +12,16 @@ public class RailGun : Gun
     [Space(10)]
     [SerializeField] private Rigidbody2D _playerRigidbody;
 
+    [Header("Visual")]
+    [SerializeField] private LineLaserSO _lineStats;
+
     protected override void Shoot()
     {
         Raycast();
 
         _playerRigidbody.AddForce(_playerRigidbody.transform.position - SpawnBulletPosition.position * _throwForce, ForceMode2D.Impulse);
+
+        LineFactory.instance.GetProduct(_spawnBulletPoint2.position, transform.right * _maxDistanceRay, _lineStats);
 
         Debug.Log("Shoot Railgun");
 
@@ -39,11 +41,12 @@ public class RailGun : Gun
             Debug.Log($"{hits1} and {hits2}");
             RaycastHit2D[] unionHits = GetUnion(hits1, hits2);
 
+
             Debug.Log(unionHits);
 
             foreach (var currentHit in unionHits)
             {
-                
+
                 Health hitHealth;
                 currentHit.collider.TryGetComponent<Health>(out hitHealth);
                 if (hitHealth)
@@ -51,7 +54,7 @@ public class RailGun : Gun
                     hitHealth.ApplyDamage(Damage);
                     Debug.Log(hitHealth);
                 }
-                        
+
             }
         }
     }
@@ -69,6 +72,6 @@ public class RailGun : Gun
         {
             _playerRigidbody = GetComponentInParent<Rigidbody2D>();
         }
-    } 
+    }
 #endif
 }

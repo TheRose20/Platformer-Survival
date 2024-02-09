@@ -10,7 +10,7 @@ public class WaveManager : MonoBehaviour
 
     [Tooltip("Use just one time to all Waves")]
     [SerializeField] private bool _oneTime = true;
-    [SerializeField, Range(0, 20)] private const float NEXT_WAVE_TIME = 3f;
+    [SerializeField, Range(0, 20)] private float NEXT_WAVE_TIME = 3f;
     [SerializeField] private Wave[] _waves = new Wave[3];
 
     private int _currentWave = 0;
