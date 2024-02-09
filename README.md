@@ -41,9 +41,29 @@ https://github.com/TheRose20/Platformer-Survival/blob/ff14a9b59c27a731f1243ab913
 - [Наводчик](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/AimGunToPlayer.cs) (Который просто наводится на игрока)
 - [Базовый класс](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/DroneWeapons/DroneGun.cs)
   - [Оружие с пулями](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/DroneWeapons/DroneGunBullet.cs) (Оружие которое стреляет пулями)
+      - [Пуля](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/DroneBullets/DroneBullet.cs)
   - [Лазерная пушка](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/Enemy/Drone/Guns/DroneWeapons/DroneGunLaser.cs) (Оружие которое стреляет лазером, моментально нанося урон)<br>
   
-В целом ничего сложножного, всего 2 производных класса с разной реализацией стрельбы. 
+В целом ничего сложножного, всего 2 производных класса с разной реализацией стрельбы. <br>
+Наводчик реализован достаточно просто: он берет позицию игрока через [Singleton](https://metanit.com/sharp/patterns/2.3.php), я подумал, что использовать [Zenject](https://github.com/modesttree/Zenject) будет лишним.
+Префаб пушки имеет в себе один из классов пушки и Наводчик.
 
+### _Грузчик_ дрона
+Дрон - есть, пушка - есть, осталось собрать все в одну массу, именно эту задачу выполняет - [_Грузчик_ дрона](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/SO/Enemy/Drone/DroneData.cs)
+
+_Грузчик_ *собирает* дрона из [DroneSO](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/SO/Enemy/Drone/DroneSO.cs) и [DroneGunSO](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/SO/Enemy/Drone/DroneGun/DroneGunSO.cs). Сборшик хоть и берет DroneGunSO, но использует только его производные классы (наверное лучше было использовать [интерфейс](https://learn.microsoft.com/ru-ru/dotnet/csharp/language-reference/keywords/interface) для этого). В любом случае я и там проверку не добавил... Блин... Ладно позже добавлю или в интерфейс переделаю.<br>
+
+Я сказал, что _Грузчик_ **собирает** дрона из его частей, но это вообще не так, он просто хранит в себе параметры **будущего** дрона. Он как грузовик перевозит части, но не собирает их, собирает эти части - Сборщик дронов.
+
+### Сборщик дронов
+
+Сборшик дронов - собирает дроны беря детали из [грузовичка](https://github.com/TheRose20/Platformer-Survival/blob/master/Assets/Platformer/Architecture/Scripts/SO/Enemy/Drone/DroneData.cs). Сборщик дронов это Singleton, чтобы к нему могли обращаться из любого класса, для создания дрона. Для создания дрона ему потребуется некоторые параметры:
+- Грузчик дрона
+- Позиция создания
+https://github.com/TheRose20/Platformer-Survival/blob/73abe6fb102696935750bf1176caf4c86439acc6/Assets/Platformer/Architecture/Scripts/Factory/Drone/DroneFactory.cs#L34
+Внутри класса происходит настоящия магия, которую я не хочу коментировать, просто скажу - "Создать этот класс было - непросто"
 
 ## Система волн
+
+Теперь переходим к достаточно интересной теме - Волны. Моей задачей было сделать класс с которым можно гибко настраивать волны врагов.
+WaveManager, а именно так я назвал класс, должен создавать врагов.
